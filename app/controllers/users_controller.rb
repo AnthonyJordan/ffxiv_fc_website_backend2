@@ -8,11 +8,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if(:profile_picture)
-        @current_user.profile_picture.attach(params[:profile_picture])
-    end
     @current_user.update(user_params)
-    byebug
     render json: @current_user, status: 200
   end
   private

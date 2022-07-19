@@ -7,6 +7,6 @@ class User < ApplicationRecord
     has_many_attached :images
 
     def profile_picture_url
-        return url_for(profile_picture) if profile_picture.attached?
+        return Rails.application.routes.url_helpers.url_for(profile_picture) if profile_picture.attached?
     end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post `characters/:id:/screenshots`. to: 'screenshots#create'
   resources :characters
   resources :comments
   post 'users/sign_in', to: 'sessions#create'

@@ -3,8 +3,8 @@ class Character < ApplicationRecord
     validates :first_name, presence: true
     validates :last_name, presence: true
     has_one_attached :character_picture
-    has_many_attached :images
     has_many :comments, dependent: :destroy
+    has_many :screenshots, dependent: :destroy
 
 
 

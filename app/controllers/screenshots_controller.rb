@@ -1,4 +1,5 @@
 class ScreenshotsController < ApplicationController
+    skip_before_action :authorize, except: :create
 
     def create
         character = Character.find(params[:id])
@@ -14,7 +15,7 @@ class ScreenshotsController < ApplicationController
         screenshots = Screenshot.all
         render json: screenshots.shuffle(), status: 200
     end
-    
+
     def characterIndex
         character = Character.find(params[:id])
         render json: character.screenshots, status: 200

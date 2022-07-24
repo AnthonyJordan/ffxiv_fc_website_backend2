@@ -14,7 +14,11 @@ class ScreenshotsController < ApplicationController
         screenshots = Screenshot.all
         render json: screenshots.shuffle(), status: 200
     end
-
+    
+    def characterIndex
+        character = Character.find(params[:id])
+        render json: character.screenshots, status: 200
+    end
 
 
     private

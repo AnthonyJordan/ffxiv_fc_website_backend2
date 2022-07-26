@@ -2,9 +2,13 @@ class UsersController < ApplicationController
     skip_before_action :authorize, only: :create
 
   def create
-    user = User.create!(user_params)
-    session[:user_id] = user.id
-    render json: user, status: :created
+    if(params[:inviteCode] === Rails.application.credentials.dig(:FCInviteCode))
+      user = User.create!(user_params)
+      session[:user_id] = user.id
+      render json: user, status: :created
+    else
+      render json: { errors: ["Invalid FC Invite Code"] }, status: :unauthorized
+    end
   end
 
   def index

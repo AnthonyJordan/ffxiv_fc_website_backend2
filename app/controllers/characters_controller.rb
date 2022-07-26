@@ -10,7 +10,7 @@ class CharactersController < ApplicationController
         render json: characters, status: 200
     end
     def showAll
-        characters =Character.where(user_id = params[:id]).all
+        characters =Character.where({user_id: params[:id]}).all
         render json: characters, status: 200
     end
     def update

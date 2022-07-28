@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   get 'user/:id/characters', to: 'characters#showAll'
   resources :users
   resources :screenshots, only: [:index,:destroy]
+  post 'users/forgot_password', to: "passwords#forgot"
+  post 'users/reset_password', to: "passwords#reset"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

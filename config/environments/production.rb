@@ -1,5 +1,7 @@
 require "active_support/core_ext/integer/time"
-
+Rails.application.routes.default_url_options ={
+  host: 'http://usagi.ddns.net'
+}
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -25,6 +27,25 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = 'http://assets.example.com'
+  config.active_storage.service = :local
+
+   #added settings
+   config.action_mailer.perform_deliveries = true
+   config.action_mailer.raise_delivery_errors = true
+ 
+   config.action_mailer.delivery_method = :smtp
+   host = 'localhost:4000'
+   config.action_mailer.default_url_options = { :host => 'localhost:4000', protocol: 'http' }
+ 
+   # SMTP settings for gmail
+   config.action_mailer.smtp_settings = {
+     :address              => "smtp.gmail.com",
+     :port                 => 587,
+     :user_name            =>  Rails.application.credentials.dig(:Gmail_Account),
+     :password             =>  Rails.application.credentials.dig(:Gmail_Password),
+     :authentication       => "plain",
+     :enable_starttls_auto => true
+   }
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache

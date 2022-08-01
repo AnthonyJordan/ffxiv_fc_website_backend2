@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   post 'users/forgot_password', to: "passwords#forgot"
   post 'users/reset_password', to: "passwords#reset"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

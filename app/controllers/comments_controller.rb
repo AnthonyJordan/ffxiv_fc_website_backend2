@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+    skip_before_action :authorize, only: :showAll
 
     def create
         character = Character.find(params[:id])
